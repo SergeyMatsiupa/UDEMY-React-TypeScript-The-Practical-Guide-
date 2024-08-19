@@ -1,9 +1,10 @@
-import CourseGoal from "./components/CourseGoal.tsx";
+// import CourseGoal from "./components/CourseGoal.tsx";
 import Header from "./components/Header.tsx";
 import goalsImg from './assets/goals.jpg';
 import { useState } from "react";
+import CourseGoalList from "./components/CourseGoalList.tsx";
 
-type CourseGoalRecord = {
+export type CourseGoalRecord = {
   title: string;
   description: string;
   id: number;
@@ -23,6 +24,12 @@ export default function App() {
     });
   }
 
+  function handleDeleteGoal(id: number) {
+    setGoal((prevGoals) => {
+      return prevGoals.filter((goal) => goal.id !== id);
+    });
+  }
+
   // return <h1>Let's get started!</h1>;
   return (
     <main>
@@ -38,7 +45,7 @@ export default function App() {
         <p>Learn it from the ground up</p>
       </CourseGoal> */}
       {/* <CourseGoal /> */}
-      <ul>
+      {/* <ul>
         {goals.map(goal => (
           <li key={goal.id}>
             <CourseGoal title={goal.title}>
@@ -48,7 +55,8 @@ export default function App() {
             </CourseGoal>
           </li>
         ))}
-      </ul>
+      </ul> */}
+      <CourseGoalList goals={goals} onDeleteGoal={handleDeleteGoal}/>
     </main>
   );
 }
